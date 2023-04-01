@@ -1,0 +1,16 @@
+Options -Indexes
+
+<IfModule mod_headers.c>
+Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+Header append X-FRAME-OPTIONS "SAMEORIGIN"
+
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>
